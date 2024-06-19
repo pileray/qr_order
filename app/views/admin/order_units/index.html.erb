@@ -23,7 +23,7 @@
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= order_unit.code %></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= order_unit.qrcode %></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= l order_unit.created_at, format: :long %></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= order_unit.order.present? ? l(order_unit.order&.paid_at, format: :long) : '' %></td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= order_unit.order&.paid_at.present? ? l(order_unit.order&.paid_at, format: :long) : '' %></td>
               </tr>
             <% end %>
             </tbody>
