@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_16_113511) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_17_084229) do
   create_table "drinks", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.integer "price", null: false
@@ -19,8 +19,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_16_113511) do
   end
 
   create_table "order_details", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "drink_id", null: false
     t.bigint "order_id", null: false
+    t.bigint "drink_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["drink_id"], name: "index_order_details_on_drink_id"
@@ -36,12 +36,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_16_113511) do
 
   create_table "orders", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "order_unit_id", null: false
-    t.decimal "total_without_tax", precision: 10
-    t.decimal "total_with_tax", precision: 10
+    t.integer "total_without_tax"
+    t.integer "total_with_tax"
     t.datetime "paid_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["order_unit_id"], name: "index_orders_on_order_unit_id"
+    t.index ["order_unit_id"], name: "index_orders_on_order_unit_id", unique: true
   end
 
   add_foreign_key "order_details", "drinks"
